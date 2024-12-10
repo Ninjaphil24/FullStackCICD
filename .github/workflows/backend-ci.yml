@@ -49,6 +49,16 @@ jobs:
         working-directory: ./backend
         run: cp .env.example .env && php artisan key:generate
 
-      # Step 5: Demo of terminal
-      - name: Enable SSH Debugging
-        uses: mxschmitt/action-tmate@v3
+        # Step 5: Run Migrations
+      - name: Run Migrations
+        working-directory: ./backendAPI
+        run: php artisan migrate --force
+
+        # Step 6: Run Backend Tests
+      - name: Run Tests
+        working-directory: ./backendAPI
+        run: ./vendor/bin/pest
+
+      # Step X: Command for terminal access
+      # - name: Enable SSH Debugging
+      #   uses: mxschmitt/action-tmate@v3
