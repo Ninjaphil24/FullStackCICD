@@ -51,13 +51,13 @@ jobs:
 
         # Step 5: Run Migrations
       - name: Run Migrations
-        working-directory: ./backendAPI
+        working-directory: ./backend
         run: php artisan migrate --force
 
         # Step 6: Run Backend Tests
       - name: Run Tests
-        working-directory: ./backendAPI
-        run: ./vendor/bin/pest
+        working-directory: ./backend
+        run: ./vendor/bin/phpunit
 
       # Step X: Command for terminal access
       # - name: Enable SSH Debugging
