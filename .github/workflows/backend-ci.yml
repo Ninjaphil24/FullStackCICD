@@ -1,0 +1,54 @@
+name: Backend CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: lara
+          MYSQL_USER: lara
+          MYSQL_PASSWORD: asdf
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+      # Step 1: Checkout Code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Step 2: Set Up PHP
+      - name: Set Up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+          extensions: mbstring, pdo_mysql
+
+      # Step 3: Install Dependencies
+      - name: Install Composer Dependencies
+        working-directory: ./backendAPI
+        run: composer install
+
+      # Step 4: Set Up .env
+      - name: Set Up .env File
+        working-directory: ./backendAPI
+        run: cp .env.example .env && php artisan key:generate
+
+      # Step 5: Demo of terminal
+      - name: Enable SSH Debugging
+        uses: mxschmitt/action-tmate@v3
