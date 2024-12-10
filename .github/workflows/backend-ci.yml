@@ -41,12 +41,12 @@ jobs:
 
       # Step 3: Install Dependencies
       - name: Install Composer Dependencies
-        working-directory: ./backendAPI
+        working-directory: ./backend
         run: composer install
 
       # Step 4: Set Up .env
       - name: Set Up .env File
-        working-directory: ./backendAPI
+        working-directory: ./backend
         run: cp .env.example .env && php artisan key:generate
 
       # Step 5: Demo of terminal
