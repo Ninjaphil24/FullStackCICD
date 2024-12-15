@@ -21,7 +21,7 @@ jobs:
       - name: Set Up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
 
       # Step 3: Install Dependencies
       - name: Install Frontend Dependencies
@@ -34,8 +34,8 @@ jobs:
         run: nohup npm run dev &
 
       # Step 5: Install Wait-on (Optional)
-      - name: Install wait-on
-        run: npm install -g wait-on
+    #   - name: Install wait-on
+    #     run: npm install -g wait-on
 
       # Step 6: Wait for Quasar Server
       - name: Wait for Quasar to Start
