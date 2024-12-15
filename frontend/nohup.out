@@ -1,0 +1,56 @@
+read failed 9: Bad file descriptor
+read failed 9: Bad file descriptor
+
+> frontend@0.0.1 dev
+> quasar dev
+
+
+ .d88888b.
+d88P" "Y88b
+888     888
+888     888 888  888  8888b.  .d8888b   8888b.  888d888
+888     888 888  888     "88b 88K          "88b 888P"
+888 Y8b 888 888  888 .d888888 "Y8888b. .d888888 888
+Y88b.Y8b88P Y88b 888 888  888      X88 888  888 888
+ "Y888888"   "Y88888 "Y888888  88888P' "Y888888 888
+       Y8b
+
+ App • Using quasar.config.ts in "ts" format
+ App • Running "@quasar/testing-e2e-cypress" Quasar App Extension...
+
+ » Reported at............ 12/15/2024 7:50:56 PM
+ » App dir................ C:\Users\mphil\Documents\FullStackCICD\frontend
+ » App URL................ http://172.21.96.1:9000/
+                           http://192.168.2.3:9000/
+                           http://localhost:9000/
+ » Dev mode............... spa
+ » Pkg quasar............. v2.17.5
+ » Pkg @quasar/app-vite... v2.0.2
+ » Browser target......... es2022|firefox115|chrome115|safari14
+
+
+node:internal/event_target:1062
+  process.nextTick(() => { throw err; });
+                           ^
+Error: Error while loading rule '@typescript-eslint/consistent-type-imports': You have used a rule which requires type information, but don't have parserOptions set to generate type information for this file. See https://typescript-eslint.io/getting-started/typed-linting for enabling linting with type information.
+Parser: vue-eslint-parser
+Note: detected a parser other than @typescript-eslint/parser. Make sure the parser is configured to forward "parserOptions.project" to @typescript-eslint/parser.
+Occurred while linting C:\Users\mphil\Documents\FullStackCICD\frontend\src\components\color-assertions.vue
+    at throwError (C:\Users\mphil\Documents\FullStackCICD\frontend\node_modules\@typescript-eslint\utils\dist\eslint-utils\getParserServices.js:38:11)
+    at getParserServices (C:\Users\mphil\Documents\FullStackCICD\frontend\node_modules\@typescript-eslint\utils\dist\eslint-utils\getParserServices.js:21:9)
+    at create (C:\Users\mphil\Documents\FullStackCICD\frontend\node_modules\@typescript-eslint\eslint-plugin\dist\rules\consistent-type-imports.js:88:68)
+    at Object.create (C:\Users\mphil\Documents\FullStackCICD\frontend\node_modules\@typescript-eslint\utils\dist\eslint-utils\RuleCreator.js:31:20)
+    at createRuleListeners (C:\Users\mphil\Documents\FullStackCICD\frontend\node_modules\eslint\lib\linter\linter.js:944:21)
+    at C:\Users\mphil\Documents\FullStackCICD\frontend\node_modules\eslint\lib\linter\linter.js:1082:84
+    at Array.forEach (<anonymous>)
+    at runRules (C:\Users\mphil\Documents\FullStackCICD\frontend\node_modules\eslint\lib\linter\linter.js:1013:34)
+    at #flatVerifyWithoutProcessors (C:\Users\mphil\Documents\FullStackCICD\frontend\node_modules\eslint\lib\linter\linter.js:1911:31)
+    at Linter._verifyWithFlatConfigArrayAndWithoutProcessors (C:\Users\mphil\Documents\FullStackCICD\frontend\node_modules\eslint\lib\linter\linter.js:1993:49)
+Emitted 'error' event on Worker instance at:
+    at [kOnErrorMessage] (node:internal/worker:314:10)
+    at [kOnMessage] (node:internal/worker:325:37)
+    at MessagePort.<anonymous> (node:internal/worker:225:57)
+    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:786:20)
+    at exports.emitMessage (node:internal/per_context/messageport:23:28)
+
+Node.js v18.20.5

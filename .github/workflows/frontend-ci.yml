@@ -1,0 +1,51 @@
+name: Frontend CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout Code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Step 2: Set Up Node.js
+      - name: Set Up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      # Step 3: Install Dependencies
+      - name: Install Frontend Dependencies
+        working-directory: ./frontend
+        run: npm install
+
+      # Step 4: Start Quasar Server
+      - name: Start Quasar Dev Server
+        working-directory: ./frontend
+        run: nohup npm run dev &
+
+      # Step 5: Install Wait-on (Optional)
+    #   - name: Install wait-on
+    #     run: npm install -g wait-on
+
+      # Step 6: Wait for Quasar Server
+      - name: Wait for Quasar to Start
+        run: |
+          for i in {1..30}; do
+            curl -v http://localhost:9000 && break || echo "Server not ready, retrying..."
+            sleep 5
+          done
+
+      # Step 7: Run Cypress Tests
+      - name: Run Cypress Tests
+        working-directory: ./frontend
+        run: npx cypress run
