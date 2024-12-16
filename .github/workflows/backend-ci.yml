@@ -57,7 +57,7 @@ jobs:
         # Step 6: Run Backend Tests
       - name: Run Tests
         working-directory: ./backend
-        run: ./vendor/bin/phpunit
+        run: ./vendor/bin/pest
 
       # Step X: Command for terminal access
       # - name: Enable SSH Debugging
