@@ -2,8 +2,7 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
-
+        <q-btn color="secondary" label="Login" @click="toggleLeftDrawer" />
         <q-toolbar-title>
           Quasar App
         </q-toolbar-title>
@@ -12,14 +11,19 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
-      <q-list>
+    <q-drawer v-model="leftDrawerOpen" bordered>
+      <q-btn-group>
+        <q-btn color="secondary" glossy label="Login" @click="selectComponent('login')" />
+        <q-btn color="secondary" glossy label="Register" @click="selectComponent('register')" />
+      </q-btn-group>
 
+      <q-list>
+        <LoginComponent v-if="selectedComponent === 'login'" />
+        <RegistrationComponent v-else-if="selectedComponent === 'register'" />
       </q-list>
     </q-drawer>
 
     <q-page-container>
-      <q-btn label="Test Connection" color="primary" @click="testConnection" />
       <!-- <router-view /> -->
     </q-page-container>
   </q-layout>
@@ -27,13 +31,14 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { api } from 'src/boot/axios';
+import RegistrationComponent from 'src/components/RegistrationComponent.vue';
+import LoginComponent from 'src/components/LoginComponent.vue';
 
+const selectedComponent = ref('login');
 const leftDrawerOpen = ref(false);
 
-async function testConnection() {
-  const response = await api.get('/test');
-  console.log('Testing connection', response.data);
+function selectComponent(component: string) {
+  selectedComponent.value = component;
 }
 
 function toggleLeftDrawer() {
@@ -43,6 +48,6 @@ function toggleLeftDrawer() {
 
 <style>
 .q-drawer {
-  background-color: #252525;
+  background-color: #787777;
 }
 </style>

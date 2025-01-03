@@ -10,7 +10,7 @@ describe('Landing', () => {
   });
   it('.should() - assert that <title> is correct', () => {
     cy.title().should('include', 'Quasar');
-    cy.contains('Test').should('exist');
+    cy.contains('Login').should('exist');
   });
 });
 

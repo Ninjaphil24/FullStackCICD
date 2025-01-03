@@ -14,6 +14,9 @@ declare module 'vue' {
 // good idea to move this instance creation inside of the
 // "export default () => {}" function below (which runs individually
 // for each client)
+const baseURL = axios.create({ baseURL: 'http://localhost:8080' });
+baseURL.defaults.withCredentials = true;
+baseURL.defaults.withXSRFToken = true;
 const api = axios.create({ baseURL: 'http://localhost:8080/api' });
 api.defaults.withCredentials = true;
 api.defaults.withXSRFToken = true;
@@ -30,4 +33,4 @@ export default defineBoot(({ app }) => {
   //       so you can easily perform requests against your app's API
 });
 
-export { api };
+export { api, baseURL };
