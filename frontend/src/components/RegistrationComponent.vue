@@ -10,10 +10,13 @@
       label-color="white" />
     <q-btn type="submit" label="Register" color="primary" />
   </q-form>
+  <LoadingIndicator v-if="authStore.loading" message="We are processing your registration and logging you in!" />
+
 </template>
 
 <script setup lang="ts">
 import { useAuthStore } from 'src/stores/auth';
+import LoadingIndicator from 'src/components/LoadingIndicator.vue';
 const authStore = useAuthStore();
 
 async function submit() {
