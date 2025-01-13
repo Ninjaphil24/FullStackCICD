@@ -2,22 +2,23 @@
 
 use App\Models\User;
 
-// test('users can authenticate using the login screen', function () {
-//     $user = User::factory()->create();
+test('users can authenticate using the login screen', function () {
+    $user = User::factory()->create();
 
-//     $response = $this->post('/login', [
-//         'email' => $user->email,
-//         'password' => 'password',
-//     ]);
+    $response = $this->post('api/login', [
+        'email' => $user->email,
+        'password' => 'password',
+    ]);
 
-//     $this->assertAuthenticated();
-//     $response->assertNoContent();
-// });
+    $this->assertAuthenticated();
+    $response->assertStatus(200);
+    $response->assertJson(['message' => 'Login successful']);
+});
 
 test('users can not authenticate with invalid password', function () {
     $user = User::factory()->create();
 
-    $this->post('/login', [
+    $this->post('api/login', [
         'email' => $user->email,
         'password' => 'wrong-password',
     ]);
@@ -25,11 +26,11 @@ test('users can not authenticate with invalid password', function () {
     $this->assertGuest();
 });
 
-// test('users can logout', function () {
-//     $user = User::factory()->create();
+test('users can logout', function () {
+    $user = User::factory()->create();
 
-//     $response = $this->actingAs($user)->post('/logout');
+    $response = $this->actingAs($user)->post('api/logout');
 
-//     $this->assertGuest();
-//     $response->assertNoContent();
-// });
+    $this->assertGuest();
+    $response->assertNoContent();
+});

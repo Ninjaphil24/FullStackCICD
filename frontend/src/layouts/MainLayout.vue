@@ -2,8 +2,8 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn v-if="!authStore.isLoggedIn" color="secondary" label="Login" @click="toggleLeftDrawer" />
-        <q-btn v-if="authStore.isLoggedIn" color="secondary" label="Logout" @click="authStore.logout" />
+        <q-btn v-if="!leftDrawerOpen" color="secondary" :label="authStore.isLoggedIn ? 'Logout' : 'Login'"
+          @click="authStore.isLoggedIn ? authStore.logout() : toggleLeftDrawer()" data-cy="login-button" />
         <q-toolbar-title>
           Quasar App
         </q-toolbar-title>
@@ -16,6 +16,7 @@
       <q-btn-group>
         <q-btn color="secondary" glossy label="Login" @click="selectComponent('login')" />
         <q-btn color="secondary" glossy label="Register" @click="selectComponent('register')" />
+        <q-btn color="red" glossy icon="close" @click="toggleLeftDrawer()" data-cy="close-button" />
       </q-btn-group>
 
       <q-list>

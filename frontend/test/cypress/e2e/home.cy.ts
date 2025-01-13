@@ -11,8 +11,19 @@ describe('Landing', () => {
   it('.should() - assert that <title> is correct', () => {
     cy.title().should('include', 'Quasar');
     cy.contains('Login').should('exist');
+    cy.get('[data-cy=login-button]').click();
+    cy.get('aside.q-drawer')
+      .should('have.attr', 'style')
+      .and('include', 'transform: translateX(0px)');
+    cy.get('[data-cy=login-button]').should('not.exist');
+    cy.get('[data-cy=close-button]').click();
+    cy.get('aside.q-drawer')
+      .should('have.attr', 'style')
+      .and('include', 'transform: translateX(-300px)');
   });
 });
+
+
 
 // ** The following code is an example to show you how to write some tests for your home page **
 //
