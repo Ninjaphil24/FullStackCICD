@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import RegistrationComponent from 'src/components/RegistrationComponent.vue';
 import LoginComponent from 'src/components/LoginComponent.vue';
 import { useAuthStore } from 'src/stores/auth';
@@ -42,6 +42,12 @@ const authStore = useAuthStore();
 
 const selectedComponent = ref('login');
 const leftDrawerOpen = ref(false);
+
+watch(() => authStore.isLoggedIn, (newVal) => {
+  if (newVal) {
+    leftDrawerOpen.value = false;
+  }
+});
 
 function selectComponent(component: string) {
   selectedComponent.value = component;
