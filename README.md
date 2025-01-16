@@ -26,6 +26,7 @@ Episode 3 brings it all together with Breeze for user authentication and focuses
 - [Episode 1](https://youtu.be/jszmgJ20DBc)
 - [Episode 2](https://youtu.be/5YCva_JGPwE)
 - [Episode 3](https://youtu.be/O3FiR6Re7jc)
+- [Episode 4](https://youtu.be/HMu4D315kp8)
 
 ### Additional Resources
 - [Laravel 11 by Jeffrey Way](https://youtu.be/SqTdHCTWqks?si=2k1MeJ-yQZkZkuIj)
