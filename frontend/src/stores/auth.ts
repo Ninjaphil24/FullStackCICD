@@ -19,7 +19,7 @@ export const useAuthStore = defineStore('authStore', {
       email: '',
       password: '',
     },
-    loading: false,
+    loading: '',
   }),
   getters: {
     isLoggedIn: (state) => !!state.user,
@@ -27,7 +27,7 @@ export const useAuthStore = defineStore('authStore', {
   actions: {
     async initialize() {
       if (this.initialized) return; // Prevent multiple initializations
-      this.loading = true;
+      this.loading = 'initialize';
       try {
         await this.fetchUser(); // Fetch the user on app load
         this.initialized = true;
@@ -38,7 +38,7 @@ export const useAuthStore = defineStore('authStore', {
       }
     },
     async register() {
-      this.loading = true;
+      this.loading = 'registration';
       try {
         await baseURL.get('/sanctum/csrf-cookie');
         const result = await api.post('/register', this.registrationForm);
@@ -51,7 +51,7 @@ export const useAuthStore = defineStore('authStore', {
       }
     },
     async login() {
-      this.loading = true;
+      this.loading = 'login';
       try {
         console.log('Login form: ', this.loginForm);
         await baseURL.get('/sanctum/csrf-cookie');
@@ -74,7 +74,7 @@ export const useAuthStore = defineStore('authStore', {
       }
     },
     async logout() {
-      this.loading = true;
+      this.loading = 'logout';
       try {
         await api.post('/logout');
         this.user = null;

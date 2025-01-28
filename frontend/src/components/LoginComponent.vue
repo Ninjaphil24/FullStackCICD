@@ -5,12 +5,10 @@
     <q-input outlined type="password" v-model="authStore.loginForm.password" label="Password" label-color="white" />
     <q-btn type="submit" label="Login" color="primary" />
   </q-form>
-  <LoadingIndicator v-if="authStore.loading" message="We are logging you in!" />
 </template>
 
 <script setup lang="ts">
 import { useAuthStore } from 'src/stores/auth';
-import LoadingIndicator from 'src/components/LoadingIndicator.vue';
 const authStore = useAuthStore();
 
 async function submit() {

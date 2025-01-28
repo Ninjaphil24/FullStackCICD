@@ -28,6 +28,8 @@
     <q-page-container>
       <div class="main" v-if="!authStore.isLoggedIn">Please log in for content</div>
       <div class="main" v-else-if="authStore.isLoggedIn">Hello, {{ authStore.user?.name }}</div>
+      <LoadingIndicator v-if="authStore.loading"
+        :message="authStore.loading === 'initialize' ? 'Checking user...' : authStore.loading === 'registration' ? 'We are registering you and logging you in...' : authStore.loading === 'login' ? 'We are logging you in...' : 'We are logging you out.'" />
     </q-page-container>
   </q-layout>
 </template>
@@ -37,6 +39,7 @@ import { ref, watch } from 'vue';
 import RegistrationComponent from 'src/components/RegistrationComponent.vue';
 import LoginComponent from 'src/components/LoginComponent.vue';
 import { useAuthStore } from 'src/stores/auth';
+import LoadingIndicator from 'src/components/LoadingIndicator.vue';
 
 const authStore = useAuthStore();
 
