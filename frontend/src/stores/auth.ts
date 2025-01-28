@@ -25,6 +25,18 @@ export const useAuthStore = defineStore('authStore', {
     isLoggedIn: (state) => !!state.user,
   },
   actions: {
+    async initialize() {
+      if (this.initialized) return; // Prevent multiple initializations
+      this.loading = true;
+      try {
+        await this.fetchUser(); // Fetch the user on app load
+        this.initialized = true;
+      } catch (error) {
+        console.error('Initialization error: ', error);
+      } finally {
+        this.loading = false;
+      }
+    },
     async register() {
       this.loading = true;
       try {
