@@ -8,7 +8,9 @@
           Quasar App
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <q-btn color="primary" label="Home" to="/" />
+        <q-btn v-if="authStore.isLoggedIn" color="primary" label="Dashboard" to="/dashboard" />
+
       </q-toolbar>
     </q-header>
 
@@ -28,6 +30,8 @@
     <q-page-container>
       <div class="main" v-if="!authStore.isLoggedIn">Please log in for content</div>
       <div class="main" v-else-if="authStore.isLoggedIn">Hello, {{ authStore.user?.name }}</div>
+      <router-view />
+
       <LoadingIndicator v-if="authStore.loading"
         :message="authStore.loading === 'initialize' ? 'Checking user...' : authStore.loading === 'registration' ? 'We are registering you and logging you in...' : authStore.loading === 'login' ? 'We are logging you in...' : 'We are logging you out.'" />
     </q-page-container>

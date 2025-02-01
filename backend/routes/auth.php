@@ -15,9 +15,9 @@ Route::middleware('guest')->group(function () {
     Route::post('/reset-password', [NewPasswordController::class, 'store'])->name('password.store');
 });
 
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 // Protected Routes
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
     // Email Verification
     Route::get('/verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
