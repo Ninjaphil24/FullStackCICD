@@ -10,7 +10,8 @@ export const useAuthStore = defineStore('authStore', {
   state: () => ({
     user: null as User | null,
     registrationForm: {
-      name: '',
+      first_name: '',
+      last_name: '',
       email: '',
       password: '',
       password_confirmation: ''

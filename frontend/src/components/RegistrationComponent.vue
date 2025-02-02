@@ -1,7 +1,9 @@
 <template>
   <q-form @submit.prevent="submit">
     <div>Registration</div>
-    <q-input class="name" outlined v-model="authStore.registrationForm.name" type="text" label="Name"
+    <q-input class="first_name" outlined v-model="authStore.registrationForm.first_name" type="text" label="First Name"
+      label-color="white" style="color: aliceblue;" />
+    <q-input class="last_name" outlined v-model="authStore.registrationForm.last_name" type="text" label="Last Name"
       label-color="white" style="color: aliceblue;" />
     <q-input outlined v-model="authStore.registrationForm.email" type="email" label="Email" label-color="white" />
     <q-input outlined type="password" v-model="authStore.registrationForm.password" label="Password"

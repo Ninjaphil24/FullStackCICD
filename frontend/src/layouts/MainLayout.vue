@@ -29,7 +29,7 @@
 
     <q-page-container>
       <div class="main" v-if="!authStore.isLoggedIn">Please log in for content</div>
-      <div class="main" v-else-if="authStore.isLoggedIn">Hello, {{ authStore.user?.name }}</div>
+      <div class="main" v-else-if="authStore.isLoggedIn">Hello, {{ authStore.user?.first_name }}</div>
       <router-view />
 
       <LoadingIndicator v-if="authStore.loading"
